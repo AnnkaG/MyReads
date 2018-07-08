@@ -25,7 +25,6 @@ class Search extends React.Component {
            this.setState({output:[]})
            return
     }
-    console.log(returned)
     const sameBooks = returned.map(returnedItem =>{
       this.props.books.forEach(book => {
         if (book.id === returnedItem.id) returnedItem.shelf = book.shelf})
@@ -52,13 +51,13 @@ class Search extends React.Component {
         <div className = "search-books-results">
           <ol className = "books-grid">
             {this.state.output.map((book) =>
-              <li key = {book.id }>
+              <li key = {book.id}>
                 <Book 
                   thumb = {book.imageLinks ? book.imageLinks.thumbnail : `http://via.placeholder.com/128x193?text=No%20Cover`}
                   title = {book.title}
                   authors = {book.authors}
                   shelf = {book.shelf}
-                  moveBook = {this.props.moveBook}
+                  changeShelf = {this.props.changeShelf}
                   book = {book}
                 />
               </li>

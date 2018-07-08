@@ -1,5 +1,6 @@
 import React from "react"
 
+//single book component (title, author, img, shelf selector)
 
 class Book extends React.Component {
 
@@ -9,19 +10,20 @@ class Book extends React.Component {
                 <div className="book-top">
                     <div className="book-cover" style={{
                         width: 128, height: 193,
-                        backgroundImage: "`url(${this.props.thumb})`"
+                        backgroundImage: `url(${this.props.thumb})`
                     }}>
                     </div>
                     <div className="book-shelf-changer">
                         <select 
                             value={this.props.shelf} 
-                            onChange={(ev) => this.props.moveBook(this.props.book, ev.target.value)}
+                            onChange={(ev) => this.props.changeShelf(this.props.book, ev.target.value)}
                             >
                             <option disabled>Move to...</option>
-                            <option value="currentlyReading">Currently Reading</option>
-                            <option value="wantToRead">Want to Read</option>
-                            <option value="read">Read</option>
                             <option value="none">None</option>
+                            <option value="currentlyReading">Currently reading</option>
+                            <option value="wantToRead">Want to read</option>
+                            <option value="read">Read</option>
+                            
                         </select>
                     </div>
                 </div>
