@@ -22,7 +22,7 @@ class Shelf extends React.Component {
                      book = {book}
                    />
                 </li>
-                )
+               )
             }
           </ol>
         </div>
