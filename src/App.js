@@ -5,11 +5,15 @@ import { Route } from "react-router-dom"
 import Search from "./Search"
 import Shelves from "./Shelves"
 
+// Final component added to the root
+
 class BooksApp extends React.Component {
+  
+  // Setting the original state
   constructor(props) {
     super(props)
     this.state = {
-      books :  []
+      books : []
     }
   }
   
@@ -18,32 +22,34 @@ class BooksApp extends React.Component {
       this.setState({ books });
    });  
   }
-  
-  moveBook = (book, shelf) => {
+
+ changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(() => {
       this.setState(prevState => ({
-        books: prevState.books.filter(b => b.id !== book.id).concat([book])
+      books: prevState.books.filter(b => b.id !== book.id).concat([book])
       }))
     })
     .then(()=> {
-      this.setState((prevState) => {
-        return {
+       this.setState((prevState) => {
+       return {
           books: prevState.books.map(findBook =>{
-            if(book.id === findBook.id) {
+           if(book.id === findBook.id) {
               findBook.shelf = shelf
             }
-            return findBook;
+           return findBook;
           })
-        }
-      })
+       }
+       })
     })
     .then(() => {
-      BooksAPI.getAll().then((books) => {
-        this.setState({ books});
-    })
-  })
-}
+       BooksAPI.getAll().then((books) => {
+         this.setState({ books});
+       })
+     })
+ }
 
+
+  
 render() {
     return (
       <div className = "app">
@@ -55,7 +61,7 @@ render() {
             shelf= {this.state.shelf} 
             key = {this.props.key}
             book  = {this.state.book}
-            moveBook = {this.moveBook}
+            changeShelf= {this.changeShelf}
           />
         )}
         />
@@ -67,7 +73,7 @@ render() {
             shelf= {this.state.shelf} 
             key = {this.props.key}
             book  = {this.props.book}
-            moveBook = {this.moveBook}
+            changeShelf = {this.changeShelf}
           />                                     
         )}
         />
